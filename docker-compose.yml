@@ -1,0 +1,49 @@
+version: '3'
+
+# django - postgres
+
+services: 
+    django-service:
+        image: python:3.8-alpine
+        container_name: django
+        build: .
+        command: python3.8 manage.py runserver 0.0.0.0:80
+        #command: gunicorn example_project.wsgi:application --bind 0.0.0.0:8000 --chdir . -reload --timeout 900
+        ports:
+            - 80:80
+        environment:
+            - DEBUG=1
+            - SECRET_KEY=django-insecure-k2v^*z_yh9%md2%#%lq*&2+nwuewlpq3w4#2g3y*t+_7k+04-e
+            - DJANGO_ALLOWED_HOSTS=localhost
+            - SQL_ENGINE=django.db.backends.postgresql
+            - SQL_DATABASE=example_project
+            - SQL_USER=example_project
+            - SQL_PASSWORD=example_project
+            - SQL_HOST=db-service
+            - SQL_PORT=5432
+            - DATABASE=example_project
+        volumes: 
+            - ./:/usr/src/app/
+        depends_on: 
+            - db-service
+        networks: 
+            - local-bridge
+    #postgres service
+    db-service:
+        image: postgres:13.3-alpine
+        container_name: postgres
+        volumes:
+            - postgres_data:/var/lib/postgresql/data/
+        environment:
+            - POSTGRES_USER=example_project
+            - POSTGRES_PASSWORD=example_project
+            - POSTGRES_DB=example_project
+        networks: 
+            - local-bridge
+        ports:
+            - 5432:5432
+networks: 
+    local-bridge:
+        driver: bridge
+volumes:
+    postgres_data:
