@@ -7,3 +7,6 @@ djangorestframework==3.12.4
 Markdown==3.3.4
 colorlog==5.0.1
 djangorestframework-simplejwt==4.7.2
+django-rest-swagger==2.2.0
+PyYAML==5.4.1
+newrelic==6.4.4.161

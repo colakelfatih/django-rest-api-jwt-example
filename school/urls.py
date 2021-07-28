@@ -1,9 +1,14 @@
 from school.views import StudentList, StudentDetail, ClassNameList, ClassNameDetail
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls import url
+
+
+
 
 
 urlpatterns = [
+    
     path('students/', StudentList.as_view()),
     path('students/<int:pk>', StudentDetail.as_view()),
     path('class/', ClassNameList.as_view()),
