@@ -17,15 +17,15 @@ from school.models import Student, ClassName
 from school.serializers import StudentSerializer, ClassNameSerializer
 
 
-
-''' BASE_DIR = Path(__file__).resolve().parent.parent
+''' 
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 logging.Formatter(' - %(name)s %(asctime)s - %(levelname)-8s%(reset)s %(blue)s%(message)s')
 
-handler = logging.FileHandler(os.path.join(BASE_DIR,'logs/errors.log'))
+handler = logging.FileHandler(os.path.join(BASE_DIR,'logs/debug.log'))
 
 logger.addHandler(handler)
 

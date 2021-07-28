@@ -198,12 +198,21 @@ LOGGING = {
             '()': 'app.DjangoColorsFormatter', 
             'format': '%(asctime)s - %(levelname)s %(name)s %(filename)s@%(lineno)s: %(message)s'
         },
+        'file': {
+            'format': '%(levelname)s %(name)s %(asctime)s %(module)s %(process)d %(thread)d %(pathname)s@%(lineno)s: %(message)s'
+        },
     },
     'handlers': {
 
         'console':{
             'class':'logging.StreamHandler',
             'formatter': 'simple',
+        },
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'formatter': 'file',
+            'filename': os.path.join(BASE_DIR,'logs/debug.log')
         },
         'mail_admins': {
             'filters': ['require_debug_false'],
