@@ -1,9 +1,15 @@
+import os
+import logging
+
+
+from pathlib import Path
+from django.conf.urls import url
+
 from django.db.models.query import QuerySet
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import mixins, generics
-from django.conf.urls import url
 from rest_framework import viewsets
 
 
@@ -11,6 +17,22 @@ from school.models import Student, ClassName
 from school.serializers import StudentSerializer, ClassNameSerializer
 
 
+
+''' BASE_DIR = Path(__file__).resolve().parent.parent
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
+logging.Formatter(' - %(name)s %(asctime)s - %(levelname)-8s%(reset)s %(blue)s%(message)s')
+
+handler = logging.FileHandler(os.path.join(BASE_DIR,'logs/errors.log'))
+
+logger.addHandler(handler)
+
+logger.error("error message")
+logger.info("info message")
+logger.warning("warning message") '''
+  
 """
 class StudentList(APIView):
     def get(self,request, form=None):
@@ -84,9 +106,10 @@ class StudentList(generics.ListCreateAPIView):
     
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
+    #print "Merhaba Python!"
 
 class StudentDetail(generics.RetrieveUpdateDestroyAPIView):
-
+    
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
 
@@ -94,6 +117,7 @@ class ClassNameList(generics.ListCreateAPIView):
     
     queryset = ClassName.objects.all()
     serializer_class = ClassNameSerializer
+    #logger.info('Sonuç: yeni sınıf_test eklendi.')
 
 class ClassNameDetail(generics.RetrieveUpdateDestroyAPIView):
 

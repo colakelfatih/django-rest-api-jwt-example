@@ -18,16 +18,12 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework_swagger.views import get_swagger_view
 from rest_framework import routers
-
-
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
 
 schema_view = get_swagger_view(title='School Example API')
-
-
 
 urlpatterns = [
     path('admin/', admin.site.urls),
